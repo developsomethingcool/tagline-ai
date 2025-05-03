@@ -112,3 +112,5 @@ Thumbs.db
 .pdm-build/
 __pypackages__/
 .pypirc
+
+data/

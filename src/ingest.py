@@ -25,4 +25,5 @@ df['text'] = df['headline'] + ' ' + df['short_description']
 # Keep only category, text and date
 df = df[['category', 'text', 'date']].dropna().drop_duplicates()
 
+# Added dataframe to sql database
 df.to_sql("articles", engine, if_exists="replace", index_label="id")
