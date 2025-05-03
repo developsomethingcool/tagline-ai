@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 db_url = os.getenv("DATABASE_URL")
 
-engine = create_engine(os.getenv(db_url))
+engine = create_engine(db_url)
 
 df = pd.read_sql("SELECT category, text FROM articles", engine)
 
@@ -26,7 +26,7 @@ X_train = tfidf.fit_transform(train_df.text)
 X_test = tfidf.transform(test_df.text)
 y_train, y_test = train_df.category, test_df.category
 
-clf = LogisticRegression(max_iter=300, n_jobs=-1, multi_class="multinomial")
+clf = LogisticRegression(max_iter=300, n_jobs=-1)
 clf.fit(X_train, y_train)
 
 joblib.dump(tfidf, "models/tfidf.joblib")
