@@ -14,9 +14,21 @@ engine = create_engine(db_url)
 
 df = pd.read_sql("SELECT category, text FROM articles", engine)
 
-train_df, test_df = train_test_split(
+# train+val and test
+train_val_df, test_df = train_test_split(
     df, test_size=0.2, stratify=df["category"], random_state=42
 )
+
+# train and val
+train_df, val_df = train_test_split(
+    train_val_df, test_size=0.1, stratify=train_val_df["category"], random_state=42
+)
+
+# Save train/test df
+train_df.to_pickle("data/train_df.pkl")
+val_df.to_pickle("data/val_df.pkl")
+test_df.to_pickle("data/test_df.pkl")
+
 
 tfidf = TfidfVectorizer(
     stop_words="english", max_features=40_000, ngram_range=(1, 2)
