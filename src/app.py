@@ -42,7 +42,7 @@ engine = get_db_engine()
 st.title("News Topic Classifier")
 
 # User input and prediction
-user_text = st.text_area("Paste a news headline or short paragraph:")
+user_text = st.text_area("Paste a news headline or short paragraph:", height=300)
     
 if st.button("Predict"):
     if not user_text.strip():
