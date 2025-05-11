@@ -114,3 +114,16 @@ __pypackages__/
 .pypirc
 
 data/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Checkpoint files
+*.ckpt
+*.pth
+*.h5
+/checkpoints/
+
